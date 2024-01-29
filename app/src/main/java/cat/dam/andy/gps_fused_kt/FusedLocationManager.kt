@@ -15,7 +15,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.SettingsClient
 
-class LocationManager(
+class FusedLocationManager(
     // Aquesta classe utilitza FusedLocationProviderClient, que és una API de Google Play Services.
     // Per tant, és necessari que l'activitat que utilitzi aquesta classe implementi l'interfície
     // mitjançant un callback del tipus LocationCallback() i capturi onLocationResult.
@@ -74,7 +74,7 @@ class LocationManager(
                     )
                 } catch (sendEx: IntentSender.SendIntentException) {
                     Log.e(
-                        "LocationManager",
+                        "FusedLocationManager",
                         "Error al iniciar la resolució de la configuració de localització",
                         sendEx
                     )

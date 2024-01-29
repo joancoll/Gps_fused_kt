@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     private val context: Context = this
     private var permissionManager = PermissionManager(context)
     private var requestingLocationUpdates = false
-    private lateinit var locationManager: LocationManager
+    private lateinit var fusedLocationManager: FusedLocationManager
     private var locationEnabled = false // Variable de control
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,12 +86,12 @@ class MainActivity : AppCompatActivity() {
                     // quan deixa de rebre localitzacions desactiva el botó i el tracking
                     locationEnabled = false
                     updateButtonScreen()
-                    locationManager.stopLocationTracking()
+                    fusedLocationManager.stopLocationTracking()
                 }
             }
         }
-        // Inicialitza el LocationManager amb els paràmetres i el callback
-        locationManager = LocationManager(
+        // Inicialitza el FusedLocationManager amb els paràmetres i el callback
+        fusedLocationManager = FusedLocationManager(
             context,
             locUpdateTimeInterval,
             locUpdateMinimalDistance,
@@ -105,12 +105,12 @@ class MainActivity : AppCompatActivity() {
         // Activa o desactiva el tracking de la localització segons clica l'usuari i estat actual
         if (locationEnabled) {
             locationEnabled = false
-            locationManager.stopLocationTracking()
+            fusedLocationManager.stopLocationTracking()
             updateButtonScreen()
         } else {
             // no canviem l'estat fins que rebem la primera localització
             requestingLocationUpdates = true
-            locationManager.startLocationTracking()
+            fusedLocationManager.startLocationTracking()
         }
     }
 

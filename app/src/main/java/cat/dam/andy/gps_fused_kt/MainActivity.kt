@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onLocationAvailability(locationAvailability: LocationAvailability) {
                 if (!locationAvailability.isLocationAvailable) {
-                    // quan deixa de rebre localitzacions desactiva el botó i el tracking
+                    // quan deixa d'haver-hi el servei de localització desactiva el botó i el tracking
                     locationEnabled = false
                     updateButtonScreen()
                     fusedLocationManager.stopLocationTracking()
